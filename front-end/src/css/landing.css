@@ -1,0 +1,60 @@
+body {
+    background-color: white;
+}
+
+#landingNavBar {
+    overflow: hidden;
+    background-color: white;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #DDDDDD;
+    padding: 5px 50px 10px 50px;
+}
+
+#navBarLogo {
+    display: inline;
+    height: 100%;
+    width: 50px;
+    margin: 10px 0px 0px 20px;
+    
+}
+
+.navBarOption {
+    font-size: 15px;
+    display: inline;
+    float: right;
+    margin: 15px 20px 15px 5px;
+    text-decoration: none;
+    color: black;
+    padding: 7px 8px 7px 8px;
+    border-bottom-style: solid;
+    border-width: 2px;
+}
+
+.navBarOption:hover {
+    background-color: #EEEEEE;
+}
+
+#landingMainDiv {
+    text-align: center;
+    margin: 60px 20px 40px 20px;
+    height: 100%;
+}
+
+#landingMainTitle, #landingMainTitle:hover {
+    font-size: 80px;
+    font-weight: 700;
+    color: #FD5E60;
+    cursor: default;
+}
+
+#landingSubtitle {
+    font-size: 20px;
+    font-weight: 300px;
+}
+
+#landingFooter {
+    background-color: white;
+    bottom: 0;
+    height: 100%;
+}
