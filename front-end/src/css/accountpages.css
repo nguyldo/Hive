@@ -1,0 +1,61 @@
+.accountform {
+    margin: 0px;
+    padding: 20px 25% 20px 25%;
+}
+
+.accountform__title {
+    font-size: 40px;
+}
+
+.accountform__switch {
+    margin-bottom: 40px;
+}
+
+.accountform__link {
+    text-decoration: none;
+    color: #FD5E60;
+}
+
+.form__title {
+    font-size: 25px;
+    margin: 0px;
+}
+
+.form__input {
+    width: 100%;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    font-size: 20px;
+    padding: 5px;
+
+    -webkit-transition: all 0.40s ease-in-out;
+    -moz-transition: all 0.40s ease-in-out;
+    -ms-transition: all 0.40s ease-in-out;
+    -o-transition: all 0.40s ease-in-out;
+
+    margin: 10px 0px 40px 0px;
+}
+
+.form__input:focus {
+    outline: none;
+    border-color: #FD5E60;
+}
+
+.form__submit {
+    font-size: 20px;
+    padding: 8px 25px 8px 25px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-color: #000000;
+}
+
+.form__submit:hover {
+    border-color: #FD5E60;
+    color: #FD5E60;
+    cursor: pointer;
+}
+
+.form__submit:focus {
+    outline: none;
+}
