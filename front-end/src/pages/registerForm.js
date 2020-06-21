@@ -1,9 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { registerUser } from '../actions/authActions';
 import LandingNavBar from '../components/landingNavBar';
+import classnames from 'classnames';
 import '../css/accountpages.css';
 
-export default class RegisterForm extends React.Component {
+class RegisterForm extends React.Component {
     constructor(props) {
         super(props);
 
@@ -16,6 +20,14 @@ export default class RegisterForm extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     }
@@ -23,8 +35,15 @@ export default class RegisterForm extends React.Component {
     onSubmit = e => {
         e.preventDefault();
 
-        console.log("Register: " + this.state.firstName + " " + this.state.lastName
-                    + " " + this.state.email + " " + this.state.password + " " + this.state.retypePassword);
+        const newUser = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            retypePassword: this.state.retypePassword
+        };
+
+        this.props.registerUser(newUser);
     }
 
     render() {
@@ -44,9 +63,22 @@ export default class RegisterForm extends React.Component {
                     <input type="password" class="form__input" id="password" onChange={this.onChange} />
                     <p class="form__title">Retype Password</p>
                     <input type="password" class="form__input" id="retypePassword" onChange={this.onChange} />
-                    <button type="submit" class="form__submit">Log in</button>
+                    <button type="submit" class="form__submit">Register</button>
                 </form>
             </div>
         </div>);
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+RegisterForm.propTypes = {
+    registerUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps, { registerUser })(RegisterForm);

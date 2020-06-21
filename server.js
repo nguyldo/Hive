@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const passport = require('passport');
+const cors = require('cors');
 require('dotenv').config();
 
 // routes
@@ -17,6 +18,7 @@ const app = express();
 // set up body-parser
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
+app.use(cors());
 
 // passport
 app.use(passport.initialize());

@@ -42,7 +42,7 @@ module.exports = function validateRegistration(data) {
     }
 
     return {
-        allErrors, // dictionary containing all validation errors
+        errors: allErrors, // dictionary containing all validation errors
         isValid: isEmpty(allErrors) // true if there are no errors, false if there are errors
     }
 }

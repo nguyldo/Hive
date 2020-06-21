@@ -1,9 +1,12 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
 import LandingNavBar from '../components/landingNavBar';
 import '../css/accountpages.css';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(props) {
         super(props);
 
@@ -13,6 +16,18 @@ export default class LoginForm extends React.Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
+        }
+    }
+
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     }
@@ -20,7 +35,13 @@ export default class LoginForm extends React.Component {
     onSubmit = e => {
         e.preventDefault();
 
-        console.log("Log in: " + this.state.email + " " + this.state.password)
+        // console.log("Log in: " + this.state.email + " " + this.state.password)
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+
+        this.props.loginUser(user);
     }
 
     render() {
@@ -40,3 +61,16 @@ export default class LoginForm extends React.Component {
         </div>);
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+LoginForm.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps, { loginUser })(LoginForm);

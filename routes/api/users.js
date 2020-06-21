@@ -44,7 +44,7 @@ router.post('/register', (request, response) => {
 
 // login API endpoint
 router.post('/login', (request, response) => {
-    const {errors, isValid} = validateLogin(request.body);
+    const { errors, isValid } = validateLogin(request.body);
 
     if (!isValid) {
         return response.status(400).json(errors);
