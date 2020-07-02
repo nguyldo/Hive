@@ -16,7 +16,8 @@ class RegisterForm extends React.Component {
             lastName: "",
             email: "",
             password: "",
-            retypePassword: ""
+            retypePassword: "",
+            errors: {}
         };
     }
 
@@ -55,14 +56,19 @@ class RegisterForm extends React.Component {
                 <form id="registerForm" onSubmit={this.onSubmit}>
                     <p class="form__title">First Name</p>
                     <input type="text" class="form__input" id="firstName" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.firstName}</span>
                     <p class="form__title">Last Name</p>
                     <input type="text" class="form__input" id="lastName" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.lastName}</span>
                     <p class="form__title">Email</p>
                     <input type="text" class="form__input" id="email" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.email}</span>
                     <p class="form__title">Password</p>
                     <input type="password" class="form__input" id="password" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.password}</span>
                     <p class="form__title">Retype Password</p>
                     <input type="password" class="form__input" id="retypePassword" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.retypePassword}</span>
                     <button type="submit" class="form__submit">Register</button>
                 </form>
             </div>

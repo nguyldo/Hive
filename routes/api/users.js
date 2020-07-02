@@ -85,4 +85,24 @@ router.post('/login', (request, response) => {
     })
 });
 
+router.get('/find/:userId', (request, response) => {
+    const userId = request.params.userId;
+
+    User.findById(userId)
+        .then(user => {
+            if (user) return response.status(200).json(user);
+            return response.status(404).json({error: "User not found"});
+        })
+        .catch(err => {
+            console.log(err);
+        })
+});
+
+router.get('/all', (request, response) => {
+
+    User.find({}, function(err, users) {
+        return response.status(200).json(users);
+    });
+});
+
 module.exports = router;

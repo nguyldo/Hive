@@ -8,6 +8,7 @@ require('dotenv').config();
 
 // routes
 const users = require('./routes/api/users');
+const rooms = require('./routes/api/rooms');
 
 // const variables
 const PORT = 3005;
@@ -25,6 +26,7 @@ app.use(passport.initialize());
 require('./config/passport') (passport);
 
 app.use('/users', users);
+app.use('/rooms', rooms);
 
 mongoose.connect(DB_CONNECTION, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('MongoDB: successfully connected!'))

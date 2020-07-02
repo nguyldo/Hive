@@ -8,8 +8,13 @@ export default class Landing extends React.Component {
         return (<div>
             <LandingNavBar />
             <div id="landingMainDiv">
-                <p id="landingMainTitle">Hive</p>
-                <p id="landingSubtitle">Coming soon!</p>
+                <div id="landingImageDiv">
+                    <img src="/undraw_happy_announcement.png" id="landingImage" />
+                </div>
+                <div id="landingTextDiv">
+                    <p id="landingMainTitle">Hive</p>
+                    <p id="landingSubtitle">Coming soon!</p>
+                </div>
             </div>
             {/*<LandingFooter />*/}
         </div>);

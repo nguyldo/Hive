@@ -12,7 +12,8 @@ class LoginForm extends React.Component {
 
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            errors: {}
         };
     }
 
@@ -53,8 +54,10 @@ class LoginForm extends React.Component {
                 <form id="loginForm" onSubmit={this.onSubmit}>
                     <p class="form__title">Email</p>
                     <input type="text" class="form__input" id="email" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.email}</span>
                     <p class="form__title">Password</p>
                     <input type="password" class="form__input" id="password" onChange={this.onChange} />
+                    <span class="form__error">{this.state.errors.password}</span>
                     <button type="submit" class="form__submit">Log in</button>
                 </form>
             </div>

@@ -9,6 +9,7 @@ Create a .env file to store the following variables:
 ```
 DB_CONNECTION=___    // database connection
 SECRET_OR_KEY=___    // JWT key
+```
 Install Node packages for the front-end:
 ```
 cd front-end
