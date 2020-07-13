@@ -12,6 +12,7 @@ class RoomCard extends React.Component {
             <div id="roomcard">
                 <p id="roomcard__title">{this.props.name}</p>
                 <p id="roomcard__description">{this.props.description}</p>
+                <p id="roomcard__ category">Type: {this.props.category}</p>
             </div>
         )
     }

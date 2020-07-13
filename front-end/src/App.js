@@ -6,6 +6,17 @@ import Dashboard from './pages/dashboard';
 import Landing from './pages/landing';
 import LoginForm from './pages/loginForm';
 import RegisterForm from './pages/registerForm';
+import setAuthToken from './utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
+import { setUser } from './actions/authActions';
+import createRoom from './pages/createRoom';
+
+if (localStorage.jwtToken) {
+    const token = localStorage.jwtToken;
+    setAuthToken(token);
+    const decoded = jwt_decode(token);
+    store.dispatch(setUser(decoded));
+}
 
 export default class App extends React.Component {
     render() {
@@ -17,6 +28,7 @@ export default class App extends React.Component {
                         <Route path="/dashboard" exact component={Dashboard} />
                         <Route path="/login" exact component={LoginForm} />
                         <Route path="/register" exact component={RegisterForm} />
+                        <Route path="/create-room" exact component={createRoom}/>
                     </div>
                 </Router>
             </Provider>

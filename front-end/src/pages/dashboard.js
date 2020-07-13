@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
                     <p id="dashboard__title">Your Rooms</p>
                     {/*<RoomCard name="My First Room" description="A short description of my very first room. Enjoy :)" />*/
                     this.state.rooms? this.state.rooms.map(room => {return (
-                        <RoomCard name={room.name} description={room.description} />
+                        <RoomCard name={room.name} description={room.description} category={room.category} />
                     )}) : (<p></p>)
                     }
                 </div>

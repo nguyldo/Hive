@@ -43,4 +43,15 @@ router.get('/findByUser/:userId', (request, response) => {
         })
 });
 
+router.get('/findByCategory/:category', (request, response) => {
+    const category = request.params.category;
+
+    Room.find({category: category})
+        .then(rooms => {
+            if (rooms) return response.status(200).json(rooms);
+            return response.status(404).json({error: "No rooms found"});
+        })
+        .catch(err => console.log(err));
+})
+
 module.exports = router;

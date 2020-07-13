@@ -11,7 +11,8 @@ class NavBar extends React.Component {
         return (
             <div id="dashboard__navbar">
                 <img src="/logo_v1.jpg" alt="Logo" id="navbar__logo" />
-                <Link id="navbar__name">{this.props.name}</Link>
+                <Link id="navbar__name" to="/dashboard">{this.props.name}</Link>
+                <Link id="navbar__name" to="/create-room">Create a new room</Link>
             </div>
         )
     }
