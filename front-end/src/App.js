@@ -10,12 +10,17 @@ import setAuthToken from './utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { setUser } from './actions/authActions';
 import createRoom from './pages/createRoom';
+import { getUserInfo } from './api/user';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
     setAuthToken(token);
     const decoded = jwt_decode(token);
-    store.dispatch(setUser(decoded));
+    //store.dispatch(setUser(localStorage.user));
+    getUserInfo(decoded.id)
+        .then(user => {
+            store.dispatch(setUser(user.data))
+        })
 }
 
 export default class App extends React.Component {

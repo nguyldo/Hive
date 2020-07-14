@@ -58,7 +58,7 @@ class CreateRoom extends React.Component {
 
     render() {
         return (<div>
-            <NavBar name={this.state.firstName ? this.state.firstName : "User"}/>
+            <NavBar name={this.props.auth.user.firstName ? this.props.auth.user.firstName : "User"}/>
             <div class="accountform">
                 <form id="createRoomForm" onSubmit={this.onSubmit}>
                     <p class="form__title">Room Name</p>

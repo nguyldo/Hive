@@ -3,6 +3,7 @@ import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 import { GET_ERRORS, SET_USER, USER_LOADING } from './types';
+import { getUserInfo } from '../api/user';
 
 // User registration
 export const registerUser = userData => dispatch => {
@@ -24,7 +25,13 @@ export const loginUser = userData => dispatch => {
             localStorage.setItem('jwtToken', token);
             setAuthToken(token);
             const decodedToken = jwt_decode(token);
-            dispatch(setUser(decodedToken));
+
+            getUserInfo(decodedToken.id)
+                .then(user => {
+                    localStorage.setItem('user', user.data);
+                    dispatch(setUser(user.data))
+                })
+            //dispatch(setUser(decodedToken));
         })
         .catch(err => dispatch({
             type: GET_ERRORS,
