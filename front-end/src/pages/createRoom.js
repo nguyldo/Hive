@@ -43,7 +43,7 @@ class CreateRoom extends React.Component {
         const room = {
             name: this.state.roomName,
             description: this.state.description,
-            creator: this.props.auth.user.id,
+            creator: this.props.auth.user._id,
             category: this.state.category
         }
 

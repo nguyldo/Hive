@@ -33,8 +33,6 @@ class Dashboard extends React.Component {
     }
 
     loadRooms() {
-        
-        console.log("here")
         if (this.props.auth.user._id) {
             console.log("got here")
             console.log(this.props.auth.user)

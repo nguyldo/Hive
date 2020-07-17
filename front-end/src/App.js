@@ -21,6 +21,8 @@ if (localStorage.jwtToken) {
         .then(user => {
             store.dispatch(setUser(user.data))
         })
+        .catch(err => console.log(err))
+    
 }
 
 export default class App extends React.Component {

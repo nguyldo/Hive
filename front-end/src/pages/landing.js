@@ -2,8 +2,21 @@ import React from 'react';
 import './../css/landing.css';
 import LandingNavBar from '../components/landingNavBar';
 import LandingFooter from '../components/landingFooter';
+import { connect } from 'react-redux';
 
-export default class Landing extends React.Component {
+class Landing extends React.Component {
+    constructor(props) {
+        super(props);
+
+        
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push('/dashboard');
+        }
+    }
+
     render() {
         return (<div>
             <LandingNavBar />
@@ -20,3 +33,9 @@ export default class Landing extends React.Component {
         </div>);
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(Landing);
