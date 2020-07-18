@@ -48,6 +48,10 @@ body {
     height: 100%;
 }
 
+.dashboard__roomlink {
+    text-decoration: none;
+}
+
 #roomcard {
     width: 350px;
     background-color: #FFFFFF;

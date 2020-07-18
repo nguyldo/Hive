@@ -9,8 +9,9 @@ import RegisterForm from './pages/registerForm';
 import setAuthToken from './utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { setUser } from './actions/authActions';
-import createRoom from './pages/createRoom';
+import CreateRoom from './pages/createRoom';
 import { getUserInfo } from './api/user';
+import RoomDetails from './pages/roomDetails';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -35,7 +36,8 @@ export default class App extends React.Component {
                         <Route path="/dashboard" exact component={Dashboard} />
                         <Route path="/login" exact component={LoginForm} />
                         <Route path="/register" exact component={RegisterForm} />
-                        <Route path="/create-room" exact component={createRoom}/>
+                        <Route path="/create-room" exact component={CreateRoom} />
+                        <Route path="/view-room" exact component={RoomDetails} />
                     </div>
                 </Router>
             </Provider>

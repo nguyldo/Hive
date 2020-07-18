@@ -30,6 +30,17 @@ router.post('/request', (request, response) => {
         .catch(err => console.log(err));
 });
 
+router.get('/find/:id', (request, response) => {
+    const id = request.params.id;
+
+    Room.findById(id)
+        .then(room => {
+            if (room) return response.status(200).json(room);
+            return response.status(404).json({error: "Room not found"});
+        })
+        .catch(err => console.log(err));
+})
+
 router.get('/findByUser/:userId', (request, response) => {
     const userId = request.params.userId;
 

@@ -7,6 +7,7 @@ import { getUserCreatedRooms } from '../api/rooms';
 import { setUserInfo } from '../actions/authActions';
 import NavBar from '../components/dashboard/nav';
 import RoomCard from '../components/dashboard/roomCard';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -34,7 +35,6 @@ class Dashboard extends React.Component {
 
     loadRooms() {
         if (this.props.auth.user._id) {
-            console.log("got here")
             console.log(this.props.auth.user)
             getUserCreatedRooms(this.props.auth.user._id)
                 .then(response => {
@@ -54,7 +54,19 @@ class Dashboard extends React.Component {
                     <p id="dashboard__title">Your Rooms</p>
                     {/*<RoomCard name="My First Room" description="A short description of my very first room. Enjoy :)" />*/
                     this.state.rooms ? this.state.rooms.map(room => {return (
-                        <RoomCard name={room.name} description={room.description} category={room.category} />
+                        <Link 
+                        to={{
+                            pathname: '/view-room',
+                            state: {
+                                id: room._id
+                            }
+                        }}
+                        style={{ 
+                            textDecoration: 'none',
+                            color: '#000000'
+                        }}>
+                            <RoomCard name={room.name} description={room.description} category={room.category} />
+                        </Link>
                     )}) : this.loadRooms()
                     }
                 </div>
