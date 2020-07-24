@@ -27,6 +27,9 @@ class RoomDetails extends React.Component {
             {this.state.room ? <div>
                 <h1>{this.state.room.name}</h1>
                 <p>{this.state.room.description}</p>
+                {
+                    this.state.room.members.map(member => (<p>{member}</p>))
+                }
             </div> : this.loadRoomDetails() }
         </div>)
     }

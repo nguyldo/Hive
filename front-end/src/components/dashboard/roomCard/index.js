@@ -7,12 +7,21 @@ class RoomCard extends React.Component {
         super(props);
     }
 
+    renderCategory(category) {
+        switch(category) {
+            case "learning":
+                return "📚";
+            default:
+                return "";
+        }
+    }
+
     render() {
         return (
             <div id="roomcard">
                 <p id="roomcard__title">{this.props.name}</p>
                 <p id="roomcard__description">{this.props.description}</p>
-                <p id="roomcard__ category">Type: {this.props.category}</p>
+                {this.renderCategory(this.props.category)}
             </div>
         )
     }

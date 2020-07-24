@@ -1,6 +1,8 @@
 // require node libraries
 const express = require('express');
+const mongoose = require('mongoose');
 const Room = require('../../models/Room');
+const User = require('../../models/User');
 
 const router = express.Router();
 
@@ -15,7 +17,11 @@ router.post('/create', (request, response) => {
     });
 
     newRoom.save()
-        .then(user => response.json(user))
+        .then(room => {
+            User.update({_id: request.body.creator}, {$push: {rooms: room._id}})
+                .then(user => response.json(user))
+            //return response.json(room)
+        })
         .catch(err => console.log(err));
 });
 
@@ -30,6 +36,21 @@ router.post('/request', (request, response) => {
         .catch(err => console.log(err));
 });
 
+router.post('/join', (request, response) => {
+    Room.findById(request.body.roomId)
+        .then(room => {
+            if (!room) return response.status(404).json({error: "Room was not found"});
+            Room.updateOne({_id: request.body.roomId}, {$push: {members: request.body.userId}})
+                .then(room => {
+                    User.update({_id: request.body.userId}, {$push: {rooms: request.body.roomId}})
+                        .then(user => response.json(room))
+                        .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+})
+
 router.get('/find/:id', (request, response) => {
     const id = request.params.id;
 
@@ -42,6 +63,18 @@ router.get('/find/:id', (request, response) => {
 })
 
 router.get('/findByUser/:userId', (request, response) => {
+    const userId = request.params.userId;
+
+    User.findById(userId)
+        .then(user => {
+            Room.find({ '_id': { $in: user.rooms } })
+                .then(rooms => response.json(rooms))
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+})
+
+router.get('/findUserCreated/:userId', (request, response) => {
     const userId = request.params.userId;
 
     Room.find({creator: userId})
