@@ -11,6 +11,12 @@ class RoomCard extends React.Component {
         switch(category) {
             case "learning":
                 return "📚";
+            case "hobbies":
+                return "🪁";
+            case "physical-wellness":
+                return "💪";
+            case "mental-wellness":
+                return "😌";
             default:
                 return "";
         }

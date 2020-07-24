@@ -5,6 +5,8 @@ import { getUserInfo } from '../api/user';
 import { createRoom } from '../api/rooms';
 import NavBar from '../components/dashboard/nav';
 
+import { Form } from 'react-bootstrap';
+
 class CreateRoom extends React.Component {
     constructor(props) {
         super(props);
@@ -37,6 +39,10 @@ class CreateRoom extends React.Component {
         this.setState({ [e.target.id]: e.target.value });
     }
 
+    onSelectChange = e => {
+        this.setState({ category: e.target.value })
+    }
+
     onSubmit = e => {
         e.preventDefault();
 
@@ -66,9 +72,15 @@ class CreateRoom extends React.Component {
                     <p class="form__title">Description</p>
                     <input type="text" class="form__input" id="description" onChange={this.onChange} />
                     <p class="form__title">Category</p>
-                    <input type="text" class="form__input" id="category" onChange={this.onChange} />
+                    <select class="form__input" onChange={this.onSelectChange}>
+                        <option selected value="learning">Learning</option>
+                        <option value="hobbies">Hobbies</option>
+                        <option value="physical-wellness">Physical Wellness</option>
+                        <option value="mental-wellness">Mental Wellness</option>
+                    </select>
                     <button type="submit" class="form__submit">Create</button>
                 </form>
+                
             </div>
         </div>);
     }
