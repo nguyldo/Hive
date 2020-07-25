@@ -17,7 +17,7 @@ class CreateRoom extends React.Component {
             email: "",
             roomName: "",
             description: "",
-            category: ""
+            category: "learning"
         }
     }
 

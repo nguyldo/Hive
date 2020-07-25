@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Room = require('../../models/Room');
 const User = require('../../models/User');
+const Posts = require('../../models/Posts');
 
 const router = express.Router();
 
@@ -19,8 +20,15 @@ router.post('/create', (request, response) => {
     newRoom.save()
         .then(room => {
             User.update({_id: request.body.creator}, {$push: {rooms: room._id}})
-                .then(user => response.json(user))
-            //return response.json(room)
+                .then(user => {
+                    const newPosts = new Posts({
+                        roomId: room._id
+                    });
+
+                    newPosts.save()
+                        .then(posts => response.json(posts))
+                    //response.json(user)
+                })
         })
         .catch(err => console.log(err));
 });
