@@ -1,0 +1,31 @@
+.search__title {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.search__results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search__individual {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search__join {
+    font-size: 20px;
+    padding: 8px 25px 8px 25px;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-style: solid;
+    border-color: #000000;
+}
+
+.search__join:hover {
+    border-color: #FD5E60;
+    color: #FD5E60;
+    cursor: pointer;
+}

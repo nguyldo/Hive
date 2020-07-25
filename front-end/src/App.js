@@ -12,6 +12,7 @@ import { setUser } from './actions/authActions';
 import CreateRoom from './pages/createRoom';
 import { getUserInfo } from './api/user';
 import RoomDetails from './pages/roomDetails';
+import RoomSearch from './pages/roomSearch';
 
 if (localStorage.jwtToken) {
     const token = localStorage.jwtToken;
@@ -38,6 +39,7 @@ export default class App extends React.Component {
                         <Route path="/register" exact component={RegisterForm} />
                         <Route path="/create-room" exact component={CreateRoom} />
                         <Route path="/view-room" exact component={RoomDetails} />
+                        <Route path="/search" exact component={RoomSearch} />
                     </div>
                 </Router>
             </Provider>

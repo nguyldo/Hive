@@ -23,6 +23,7 @@ class NavBar extends React.Component {
                 <Link id="navbar__name" onClick={this.props.logoutUser} to="/">Log out</Link>
                 <Link id="navbar__name" to="/dashboard">{this.props.name}</Link>
                 <Link id="navbar__name" to="/create-room">Create a new room</Link>
+                <Link id="navbar__name" to="/search">Search</Link>
             </div>
         )
     }

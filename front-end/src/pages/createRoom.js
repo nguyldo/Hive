@@ -65,7 +65,7 @@ class CreateRoom extends React.Component {
     render() {
         return (<div>
             <NavBar name={this.props.auth.user.firstName ? this.props.auth.user.firstName : "User"}/>
-            <div class="accountform">
+            <div class="page__container">
                 <form id="createRoomForm" onSubmit={this.onSubmit}>
                     <p class="form__title">Room Name</p>
                     <input type="text" class="form__input" id="roomName" onChange={this.onChange} />
