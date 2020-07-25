@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getRoomInfo, getRoomPosts } from '../api/rooms';
+import { getRoomInfo, getRoomPosts, createNewPost } from '../api/rooms';
 import NavBar from '../components/dashboard/nav';
 import PostCard from '../components/dashboard/postCard';
 
@@ -10,7 +10,9 @@ class RoomDetails extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {/*
+        this.state = {
+            newPostButton: "Create New Post +",
+            displayNewPost: false/*
             posts: [
                 {
                     author: "5f1b77ffd585f76113483812",
@@ -24,6 +26,8 @@ class RoomDetails extends React.Component {
                 }
             ]
         */}
+
+        this.toggleNewPost = this.toggleNewPost.bind(this);
     }
 
     loadRoomDetails() {
@@ -40,12 +44,39 @@ class RoomDetails extends React.Component {
     loadPosts() {
         getRoomPosts(this.state.room._id)
             .then(response => {
+                let data = response.data
+                data.posts = data.posts.reverse()
                 this.setState({
-                    posts: response.data
+                    posts: data
                 })
                 console.log("success")
                 console.log(this.state)
             })
+    }
+
+    toggleNewPost() {
+        this.setState({
+            displayNewPost: !this.state.displayNewPost
+        })
+        let newText
+        if (this.state.displayNewPost) newText = "Create New Post +"
+        else newText = "Create New Post -"
+        this.setState({
+            newPostButton: newText
+        })
+    }
+
+    handleNewPostChange = e => {
+        this.setState({
+            currentPost: e.target.value
+        })
+    }
+
+    submitNewPost = e => {
+        e.preventDefault()
+
+        createNewPost(this.state.room._id, this.props.auth.user._id, this.state.currentPost)
+            .then(response => window.location.reload(false))
     }
 
     renderCategory(category) {
@@ -63,6 +94,16 @@ class RoomDetails extends React.Component {
         }
     }
 
+    renderNewPost() {
+        return (<div class="newpost">
+            <form id="newpost__form" onSubmit={this.submitNewPost}>
+                <p class="room__subtitle">New Post</p>
+                <textarea id="content" class="newpost__content" onChange={this.handleNewPostChange}></textarea>
+                <button type="submit" class="newpost__submit">Post</button>
+            </form>
+        </div>)
+    }
+
     render() {
         return (<div>
             <NavBar name={this.props.auth.user.firstName ? this.props.auth.user.firstName : "User"}/>
@@ -76,10 +117,12 @@ class RoomDetails extends React.Component {
                     <p class="room__description">{this.state.room.description}</p>
                 </div>
                 <div class="room__body">
-                    <h2 class="room__subtitle">Posts</h2>
+                    <p class="room__subtitle">Posts</p>
                     {this.state.posts ?
                         (<div>
-                            {this.state.posts.posts.reverse().map(post => (<PostCard author={post.author} content={post.content} date={post.date}/>))}
+                            <button onClick={this.toggleNewPost} class="newpost__toggle">{this.state.newPostButton}</button>
+                            {this.state.displayNewPost ? this.renderNewPost() : (<div></div>)}
+                            {this.state.posts.posts.map(post => (<PostCard author={post.author} content={post.content} date={post.date}/>))}
                         </div>) :
                         this.loadPosts()
                         //(<p class="room__description">No posts yet.</p>) && this.loadPosts()

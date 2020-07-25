@@ -19,3 +19,12 @@ export async function getRoomPosts(id) {
     return await axios.get('http://localhost:3005/posts/getPostsByRoom/' + id)
         .catch(err => console.log(err));
 }
+
+export async function createNewPost(roomId, userId, content) {
+    return await axios.post('http://localhost:3005/posts/addPost', {
+        roomId: roomId,
+        userId: userId,
+        content: content
+    })
+        .catch(err => console.log(err))
+}
