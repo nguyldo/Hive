@@ -1,8 +1,8 @@
 body {
-    background-color: #FFFBCC;
     height: 100%;
 }
 
+/*
 #dashboard__navbar {
     overflow: hidden;
     background-color: white;
@@ -10,6 +10,33 @@ body {
     border-bottom-width: 1px;
     border-bottom-color: #DDDDDD;
     padding: 5px 50px 10px 50px;
+}
+*/
+
+#dashboard__navbar {
+    overflow: hidden;
+    background-color: #FD5E60;
+    margin: 15px;
+    padding: 20px 35px 20px 35px;
+    border-radius: 30px;
+}
+
+.navbar__home {
+    font-size: 17px;
+    display: inline;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar__option {
+    font-size: 16px;
+    display: inline;
+    float: right;
+    margin-left: 40px;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 300;
 }
 
 #navbar__logo {
