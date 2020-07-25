@@ -25,9 +25,11 @@ class RoomCard extends React.Component {
     render() {
         return (
             <div id="roomcard">
-                <p id="roomcard__title">{this.props.name}</p>
+                <div id="roomcard__top">
+                    <p id="roomcard__title">{this.props.name}</p>
+                    <p id="roomcard__category">{this.renderCategory(this.props.category)}</p>
+                </div>
                 <p id="roomcard__description">{this.props.description}</p>
-                {this.renderCategory(this.props.category)}
             </div>
         )
     }

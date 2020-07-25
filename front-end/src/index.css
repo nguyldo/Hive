@@ -9,3 +9,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.page__container {
+  margin: 0px;
+  padding: 20px 12% 20px 12%;
+}

@@ -14,3 +14,8 @@ export async function getRoomInfo(id) {
     return await axios.get('http://localhost:3005/rooms/find/' + id)
         .catch(err => console.log(err));
 }
+
+export async function getRoomPosts(id) {
+    return await axios.get('http://localhost:3005/posts/getPostsByRoom/' + id)
+        .catch(err => console.log(err));
+}
